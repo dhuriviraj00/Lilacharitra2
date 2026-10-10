@@ -1,0 +1,6 @@
+{
+  "name": "Lila Charitra - Sacred Reading App",
+  "description": "A comprehensive reading, study, and devotional companion for Shri Lila Charitra, Sutrapath, Dhrushtant Path, sacred places, and old Marathi glossary.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}
