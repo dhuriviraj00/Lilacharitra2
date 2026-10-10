@@ -1,42 +1,24 @@
-# Shri Leela Charitra – Digital Granth
+# श्री लीळाचरित्र – Digital Granth (installable app)
 
-This repository contains the existing React/Vite application and the original book and glossary files provided with the project.
-
-## Included materials
-
-- Existing application source in `src/`
-- Original EPUB/PDF reading materials in the project root (preserved)
-- Public copies of EPUB/PDF materials in `public/library/` for static hosting
-- `FILE_INVENTORY.md` listing the public library files
+Static site + PWA. Works offline after the first visit.
 
 ## Run locally
+    python3 -m http.server 8080      # then open http://localhost:8080
+(Service workers need http://localhost or https — not file://)
 
-Requirements: Node.js 22.12+ (recommended for the Vite version in this project) and npm.
+## Publish (GitHub Pages)
+Upload the *contents* of this folder to the repo root, then Settings → Pages → Deploy from branch → main / (root).
 
-```bash
-npm install
-npm run dev
-```
+## Install
+- Android/Chrome & desktop Chrome/Edge: open the site → "Install App" button (or browser menu → Install).
+- iPhone/iPad Safari: Share → Add to Home Screen.
 
-## Build
+## Make an Android APK / Play Store build
+Deploy to HTTPS first, then either:
+- https://www.pwabuilder.com → paste your URL → Android package, or
+- `npm i -g @bubblewrap/cli && bubblewrap init --manifest https://YOUR-SITE/manifest.webmanifest && bubblewrap build`
 
-```bash
-npm run build
-npm run preview
-```
-
-## Deploy to GitHub Pages
-
-The Vite base path is configured for the repository `Lilacharitra2` at `/Lilacharitra2/`.
-
-1. Upload the extracted contents of this project to the root of your existing `Lilacharitra2` GitHub repository (not the ZIP itself and not an extra nested folder).
-2. Commit the changes to the `main` branch.
-3. In GitHub, open **Settings → Pages** and select **GitHub Actions** as the deployment source.
-4. The workflow at `.github/workflows/deploy.yml` builds and deploys the app.
-5. Open `https://dhuriviraj00.github.io/Lilacharitra2/` after the workflow succeeds.
-
-## Important notes
-
-- The password-protected StatiCrypt `index.html` has been replaced with the Vite application entry point.
-- Do not commit secrets or private documents. Confirm you have permission to publish all book materials publicly.
-- A source ZIP being prepared does not mean that the live GitHub Pages deployment has already been completed or verified.
+## Notes
+- sw.js pre-caches the EPUB reader, Amhi.epub and the library home; other pages/JSON are cached as you open them. Bump VERSION in sw.js after content changes.
+- main/ uses jQuery Mobile from code.jquery.com; it is cached on first online visit.
+- Publish only material you have permission to share.
